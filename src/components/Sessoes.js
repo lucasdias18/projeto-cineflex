@@ -9,12 +9,15 @@ import { Link } from 'react-router-dom'
 export default function Sessoes() {
 
     const [sessao, setSessao] = useState(undefined)
+    // const [horario, setHorario] = useState(undefined)
 
     useEffect(() => {
 		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/1/showtimes`);
 
-		requisicao.then((resposta) => setSessao(resposta.data))
+		requisicao.then((resposta) => setSessao(resposta.data.days))
         requisicao.catch((erro) => console.log(erro.data))
+
+
 	}, []);
 
     if (sessao === undefined) {
@@ -28,7 +31,7 @@ export default function Sessoes() {
             {
                 sessao.map((session) => {
                     return (
-                        <Sessao hora={session.days.showtimes.name} dia={session.days.date} id={session.days.id} weekday={session.days.weekday} />
+                        <Sessao hora1={session.showtimes.map((nome) => nome.name)} hora2={session.showtimes.map((nome) => nome.name)} dia={session.date} id={session.id} weekday={session.weekday} />
                     )
                 })
             }
@@ -41,8 +44,11 @@ function Sessao(props) {
     return (
         <Container>
             <H1>{props.weekday} - {props.dia}</H1>
-            <Link key={props.hora} to={`/sessoes/${props.id}`}>
-                <Botao>{props.hora}</Botao>
+            <Link key={props.hora1} to={`/sessoes/${props.id}`}>
+                <Botao>{props.hora1}</Botao>
+            </Link>
+            <Link key={props.hora2} to={`/sessoes/${props.id}`}>
+                <Botao>{props.hora2}</Botao>
             </Link>
         </Container>
     )
