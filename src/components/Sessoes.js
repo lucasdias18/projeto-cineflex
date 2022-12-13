@@ -28,7 +28,7 @@ export default function Sessoes() {
             {
                 sessao.map((session) => {
                     return (
-                        <Sessao hora={[session.days].name} dia={[session.days].date} id={[session.days].id} weekday={[session.days].weekday} />
+                        <Sessao hora={session.days.showtimes.name} dia={session.days.date} id={session.days.id} weekday={session.days.weekday} />
                     )
                 })
             }
@@ -37,6 +37,7 @@ export default function Sessoes() {
 }
 
 function Sessao(props) {
+    console.log(props)
     return (
         <Container>
             <H1>{props.weekday} - {props.dia}</H1>
@@ -54,7 +55,7 @@ font-weight: 400;
 line-height: 28px;
 text-align: center;
 color: #293845;
-margin-top: 30px;
+margin-top: 107px;
 margin-bottom: 30px;
 `
 const Container = styled.div`

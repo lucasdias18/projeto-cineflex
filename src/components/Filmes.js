@@ -14,14 +14,6 @@ export default function Filmes() {
 		});
         requisicao.catch((erro) => console.log(erro.response.data))
 	}, []);
-        // requisicao.then(resp);
-        // requisicao.catch((erro) => console.log('erro'))
-
-        // function resp(resposta) {
-        //     setFilmes(resposta.data)
-        //     console.log(resposta)
-        // }
-        // }, []);
 
         if (filmes === undefined) {
             return <img src="https://media.tenor.com/UnFx-k_lSckAAAAM/amalie-steiness.gif" />
