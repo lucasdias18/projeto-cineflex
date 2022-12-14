@@ -6,8 +6,8 @@ import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import HoraSessao from './HoraSessao';
 
-var horario;
-var sessao;
+// var horario;
+// var sessao;
 
 export default function Sessoes() {
 
@@ -19,9 +19,9 @@ export default function Sessoes() {
 		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
 
 		requisicao.then((resposta) => {
-             setSessao(resposta.data.days)
-             setHorario(sessao.showtimes)
-             console.log(horario)
+            setSessao(resposta.data.days)
+            setHorario(sessao.showtimes)
+            // console.log(horario)
         })
 
         // requisicao.then(resposta)
@@ -44,18 +44,18 @@ export default function Sessoes() {
             {
                 sessao.map((session) => {
                     return (
-                        <Sessao dia={session.date} weekday={session.weekday} />
+                        <Sessao hora={session.showtimes.map((nome) => nome.name)} dia={session.date} weekday={session.weekday} id={session.id} />
                     )
                 })
             }
 
-            {
+            {/* {
                 horario.map((hour) => {
                     return (
                         <Hora hora={hour.name} id={hour.id} />
                     )
                 })
-            }
+            } */}
 
         </>
     )
@@ -76,9 +76,9 @@ function Sessao(props) {
                     )
                 })
             } */}
-            {/* <Link key={props.hora} to={`/sessoes/${props.id}`}>
+            <Link key={props.hora} to={`/sessoes/${props.id}`}>
                 <Botao>{props.hora}</Botao>
-            </Link> */}
+            </Link>
 
             {/* <HoraSessao></HoraSessao> */}
         </Container>
