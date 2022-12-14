@@ -3,37 +3,38 @@ import Header from './Header'
 import Filmes from './Filmes'
 import { useState, useEffect } from 'react';
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
+import HoraSessao from './HoraSessao';
 
-// const [horario, setHorario] = useState(undefined)
+var horario;
+var sessao;
 
 export default function Sessoes() {
 
     const [sessao, setSessao] = useState(undefined)
-    // const [horario, setHorario] = useState(undefined)
+    const [horario, setHorario] = useState(undefined)
+    const { idFilme } = useParams();
 
     useEffect(() => {
-		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/1/showtimes`);
+		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
 
-		requisicao.then((resposta) => setSessao(resposta.data.days))
+		requisicao.then((resposta) => {
+             setSessao(resposta.data.days)
+             setHorario(sessao.showtimes)
+             console.log(horario)
+        })
+
         // requisicao.then(resposta)
-        requisicao.catch((erro) => console.log(erro.data))
 
-        // function resposta(resp) {
-        //     setSessao(resp.data.days)
-        //     function answer(sessao) {
-        //         setHorario(sessao.showtimes)
-        //         console.log(horario)
-        //     }
-        //     // console.log(horario)
-        // }
-        // setHorario(sessao.showtimes)
+        requisicao.catch((erro) => console.log(erro.data))
 
 	}, []);
 
     if (sessao === undefined) {
         return <img src="https://media.tenor.com/UnFx-k_lSckAAAAM/amalie-steiness.gif" />
     }
+
+    // setHorario(sessao.showtimes)
 
     return (
         <>
@@ -43,66 +44,55 @@ export default function Sessoes() {
             {
                 sessao.map((session) => {
                     return (
-                        <Sessao hora={session.showtimes.map((nome) => nome.name)} dia={session.date} weekday={session.weekday} />
+                        <Sessao dia={session.date} weekday={session.weekday} />
                     )
                 })
             }
 
-            {/* <Container>
-                {
-                    sessao.map((session) => {
-                        return (
-                            <Sessao dia={session.date} weekday={session.weekday} />
-                        )
-                    })
-                    // horario.map((hour) => return <Hora hora={hour.name} id={hour.id})
-                }
-                {
-                    horario.map((hour) => {
-                        return (
-                            <Hora hora={hour.name} id={hour.id} />
-                        )
-                    })
-                }
+            {
+                horario.map((hour) => {
+                    return (
+                        <Hora hora={hour.name} id={hour.id} />
+                    )
+                })
+            }
 
-            </Container> */}
         </>
     )
 }
 
-// hora1={session.showtimes.map((nome) => nome.name)} hora2={session.showtimes.map((nome) => nome.name)}
-
-// horario.map((hour) => {
-//     return (
-//         <Hora hora={hour.name} />
-//     )
-// })
-// }
 
 function Sessao(props) {
+    // const [horario, setHorario] = useState(sessao.showtimes)
+    // console.log(horario)
+    // console.log(sessao)
     return (
         <Container>
             <H1>{props.weekday} - {props.dia}</H1>
-            <Link key={props.hora} to={`/sessoes/${props.id}`}>
+            {/* {
+                horario.map((hour) => {
+                    return (
+                        <Hora hora={hour.name} id={hour.id} />
+                    )
+                })
+            } */}
+            {/* <Link key={props.hora} to={`/sessoes/${props.id}`}>
                 <Botao>{props.hora}</Botao>
-            </Link>
+            </Link> */}
+
+            {/* <HoraSessao></HoraSessao> */}
         </Container>
     )
 }
 
-// function Sessao(props) {
-//     return (
-//             <H1>{props.weekday} - {props.dia}</H1>
-//     )
-// }
+function Hora(props) {
+    return (
+        <Link key={props.hora} to={`/sessoes/${props.id}`}>
+                <Botao>{props.hora}</Botao>
+        </Link>
+    )
+}
 
-// function Hora(props) {
-//     return (
-//         <Link key={props.hora} to={`/sessoes/${props.id}`}>
-//             <Botao>{props.hora}</Botao>
-//         </Link>
-//     )
-// }
 
 const Titulo = styled.h1`
 font-family: Roboto;
