@@ -2,11 +2,22 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 
-export default function HoraSessao(props) {
+export default function HoraSessao({horario}) {
+    // const {id, showtimes} = horario
+    const {showtimes} = horario
+
     return (
-        <Link key={props.hora} to={`/sessoes/${props.id}`}>
-                <Botao>{props.hora}</Botao>
-        </Link>
+        <Caixa>
+            {
+                showtimes.map((h) => {
+                    return (
+                        <Link key={h.id} to={`/assentos/${h.id}`}>
+                            <Botao>{h.name}</Botao>
+                        </Link>
+                    )
+                })
+            }
+        </Caixa>
     )
 }
 
@@ -16,4 +27,9 @@ width: 83px;
 border-radius: 3px;
 background-color: #E8833A;
 border: hidden;
+`
+
+const Caixa = styled.div`
+display: flex;
+gap: 8px;
 `

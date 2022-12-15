@@ -6,22 +6,18 @@ import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import HoraSessao from './HoraSessao';
 
-// var horario;
-// var sessao;
 
 export default function Sessoes() {
 
     const [sessao, setSessao] = useState(undefined)
-    const [horario, setHorario] = useState(undefined)
+    // const [horario, setHorario] = useState([])
     const { idFilme } = useParams();
 
     useEffect(() => {
 		const requisicao = axios.get(`https://mock-api.driven.com.br/api/v8/cineflex/movies/${idFilme}/showtimes`);
 
 		requisicao.then((resposta) => {
-            setSessao(resposta.data.days)
-            setHorario(sessao.showtimes)
-            // console.log(horario)
+            setSessao(resposta.data)
         })
 
         // requisicao.then(resposta)
@@ -34,64 +30,41 @@ export default function Sessoes() {
         return <img src="https://media.tenor.com/UnFx-k_lSckAAAAM/amalie-steiness.gif" />
     }
 
-    // setHorario(sessao.showtimes)
 
     return (
         <>
             <Header></Header>
             <Titulo>Selecione o Horário</Titulo>
-
+            <Container>
             {
-                sessao.map((session) => {
+                sessao.days.map((session) => {
                     return (
-                        <Sessao hora={session.showtimes.map((nome) => nome.name)} dia={session.date} weekday={session.weekday} id={session.id} />
+                        <>
+                        <Sessao dia={session.date} weekday={session.weekday} />
+                        <HoraSessao key={session.id} horario={session}/>
+                        </>
                     )
                 })
             }
-
-            {/* {
-                horario.map((hour) => {
-                    return (
-                        <Hora hora={hour.name} id={hour.id} />
-                    )
-                })
-            } */}
-
+            </Container>
         </>
     )
 }
 
 
 function Sessao(props) {
-    // const [horario, setHorario] = useState(sessao.showtimes)
-    // console.log(horario)
-    // console.log(sessao)
     return (
-        <Container>
             <H1>{props.weekday} - {props.dia}</H1>
-            {/* {
-                horario.map((hour) => {
-                    return (
-                        <Hora hora={hour.name} id={hour.id} />
-                    )
-                })
-            } */}
-            <Link key={props.hora} to={`/sessoes/${props.id}`}>
-                <Botao>{props.hora}</Botao>
-            </Link>
-
-            {/* <HoraSessao></HoraSessao> */}
-        </Container>
     )
 }
 
-function Hora(props) {
-    return (
-        <Link key={props.hora} to={`/sessoes/${props.id}`}>
-                <Botao>{props.hora}</Botao>
-        </Link>
-    )
-}
+// function Hora(props) {
+//     return (
+//         <Link key={props.hora} to={`/sessoes/${props.id}`}>
+//                 <Botao>{props.hora}</Botao>
+//         </Link>
+//     )
+// }
 
 
 const Titulo = styled.h1`
@@ -105,6 +78,9 @@ margin-top: 107px;
 margin-bottom: 30px;
 `
 const Container = styled.div`
+display: flex;
+flex-direction: column;
+gap: 23px;
 `
 
 const H1 = styled.h1`
