@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import InitialScreen from './components/InitialScreen'
 import Sessoes from './components/Sessoes'
 import Assentos from './components/Assentos'
+import Header from "./components/Header";
 
 // export default function App() {
 //   return (
@@ -17,6 +18,7 @@ export default function App() {
 		//Colocar todo App entre BrowerRouter
 		<BrowserRouter>
 			{/* Tudo que tiver uma rota entre Routes */}
+			<Header />
 			<Routes>
 				{/* Cada rota tem que estar em Route */}
 				<Route path="/" element={<InitialScreen />} />

@@ -33,7 +33,6 @@ export default function Sessoes() {
 
     return (
         <>
-            <Header></Header>
             <Titulo>Selecione o Horário</Titulo>
             <Container>
             {
@@ -57,14 +56,6 @@ function Sessao(props) {
             <H1>{props.weekday} - {props.dia}</H1>
     )
 }
-
-// function Hora(props) {
-//     return (
-//         <Link key={props.hora} to={`/sessoes/${props.id}`}>
-//                 <Botao>{props.hora}</Botao>
-//         </Link>
-//     )
-// }
 
 
 const Titulo = styled.h1`
