@@ -7,7 +7,6 @@ import Assentos from "./Assentos";
 
 export default function Seat({cadeira, escolhaAssento, selecao}) {
     const [status, setStatus] = useState('disponivel')
-    // var [selecionado, setSelecionado] = useState([])
 
     useEffect(() => {
         if (selecao) {
@@ -30,17 +29,6 @@ export default function Seat({cadeira, escolhaAssento, selecao}) {
         return <Botao2 onClick={() => alert('Assento indisponível!')}>{cadeira.name}</Botao2>
     }
 
-    // function escolhaAssento(cadeira) {
-    //     var [selecionado, setSelecionado] = useState([])
-    //     if (status === 'disponivel') {
-    //         setStatus('selecionado')
-    //         // setSelecionado(selecionado.push(cadeira.id))
-    //         // console.log(selecionado)
-    //     }
-    //     else {
-    //         setStatus('disponivel')
-    //     }
-    // }
 }
 
 

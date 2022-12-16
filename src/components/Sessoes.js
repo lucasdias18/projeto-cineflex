@@ -11,7 +11,6 @@ import Footer from './Footer';
 export default function Sessoes() {
 
     const [sessao, setSessao] = useState(undefined)
-    // const [horario, setHorario] = useState([])
     const { idFilme } = useParams();
 
     useEffect(() => {
@@ -21,7 +20,6 @@ export default function Sessoes() {
             setSessao(resposta.data)
         })
 
-        // requisicao.then(resposta)
 
         requisicao.catch((erro) => console.log(erro.data))
 

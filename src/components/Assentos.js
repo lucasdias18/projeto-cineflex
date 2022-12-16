@@ -4,7 +4,6 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "./Footer";
 import Seat from "./Seat";
-// import { selecionado } from "./Seat";
 
 export default function Assentos({setSucesso}) {
     const [assento, setAssento] = useState(undefined)
@@ -12,7 +11,6 @@ export default function Assentos({setSucesso}) {
     const [nome, setNome] = useState('')
     const [cpf, setCPF] = useState('')
     const [selecionado, setSelecionado] = useState([])
-    // const [sucesso, setSucesso] = useState({})
     const navigate = useNavigate()
 
     useEffect(() => {

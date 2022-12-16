@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 
 export default function HoraSessao({horario}) {
-    // const {id, showtimes} = horario
     const {showtimes} = horario
 
     return (
