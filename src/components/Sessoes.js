@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { Link, useParams } from 'react-router-dom'
 import HoraSessao from './HoraSessao';
+import Footer from './Footer';
 
 
 export default function Sessoes() {
@@ -46,6 +47,7 @@ export default function Sessoes() {
                 })
             }
             </Container>
+            <Footer tituloFilme={sessao.title} poster={sessao.posterURL}/>
         </>
     )
 }
@@ -71,7 +73,9 @@ margin-bottom: 30px;
 const Container = styled.div`
 display: flex;
 flex-direction: column;
-gap: 23px;
+gap: 10px;
+margin-left: 23px;
+margin-bottom: 140px;
 `
 
 const H1 = styled.h1`
@@ -81,12 +85,4 @@ font-weight: 400;
 line-height: 23px;
 text-align: left;
 color: #293845
-`
-
-const Botao = styled.button `
-height: 43px;
-width: 83px;
-border-radius: 3px;
-background-color: #E8833A;
-border: hidden;
 `

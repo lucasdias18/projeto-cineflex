@@ -31,5 +31,5 @@ border: hidden;
 
 const Caixa = styled.div`
 display: flex;
-gap: 8px;
+column-gap: 8px;
 `

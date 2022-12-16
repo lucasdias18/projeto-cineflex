@@ -44,6 +44,41 @@ const GlobalStyle = createGlobalStyle`
         border-collapse: collapse;
         border-spacing: 0;
     }
+
+    input {
+        height: 51px;
+        border-radius: 3px;
+        background-color: #FFFFFF;
+        border: 1px solid #D4D4D4;
+        margin-bottom: 6px;
+        padding: 0 10px;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+        text-align: left;
+        color: #293845;
+        &::placeholder{
+            color: #AFAFAF;
+            font-style: italic;
+        }
+    }
+
+    button {
+        width: 225px;
+        margin: 35px auto 20px auto;
+        height: 42px;
+        border-radius: 3px;
+        background-color: #E8833A;
+        border: hidden;
+        font-family: Roboto;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 21px;
+        text-align: center;
+        color: #FFFFFF;
+    }
+
 `
 
 export default GlobalStyle
