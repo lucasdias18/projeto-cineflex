@@ -1,6 +1,4 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Link } from "react-router-dom";
-
 import InitialScreen from './components/InitialScreen'
 import Sessoes from './components/Sessoes'
 import Assentos from './components/Assentos'

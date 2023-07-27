@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import Footer from "./Footer";
 import Seat from "./Seat";
@@ -66,7 +66,7 @@ export default function Assentos({setSucesso}) {
             <Titulo>Selecione o(s) assento(s)</Titulo>
             <ContainerAssento>
             {
-                assento.seats.map((sea) => {
+                assento?.seats.map((sea) => {
                     return (
                         <Seat key={sea.id} cadeira={sea} escolhaAssento={escolhaAssento} selecao={selecionado.some((s) => s.id === sea.id)} />
                     )
@@ -97,7 +97,7 @@ export default function Assentos({setSucesso}) {
                 <button type="submit">Reservar Assento(s)</button>
             </Form>
 
-            <Footer tituloFilme={assento.movie.title} poster={assento.movie.posterURL} weekday={assento.day.weekday} hora={assento.name} />
+            <Footer tituloFilme={assento?.movie.title} poster={assento?.movie.posterURL} weekday={assento?.day.weekday} hora={assento?.name} />
         </> 
     )
 }

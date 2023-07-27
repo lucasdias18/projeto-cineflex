@@ -77,6 +77,7 @@ const GlobalStyle = createGlobalStyle`
         line-height: 21px;
         text-align: center;
         color: #FFFFFF;
+        cursor: pointer;
     }
 
 `

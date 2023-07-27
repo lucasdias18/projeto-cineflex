@@ -26,6 +26,7 @@ width: 83px;
 border-radius: 3px;
 background-color: #E8833A;
 border: hidden;
+cursor: pointer;
 `
 
 const Caixa = styled.div`

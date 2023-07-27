@@ -82,5 +82,5 @@ font-size: 20px;
 font-weight: 400;
 line-height: 23px;
 text-align: left;
-color: #293845
+color: #293845;
 `

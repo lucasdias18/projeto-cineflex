@@ -46,6 +46,7 @@ font-size: 11px;
 font-weight: 400;
 line-height: 13px;
 color: #000000;
+cursor: pointer;
 `
 
 const Botao2 = styled.div`
